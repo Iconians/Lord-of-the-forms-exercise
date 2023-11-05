@@ -1,5 +1,6 @@
 import { ErrorMessage } from "../ErrorMessage";
 
+// make ts file to house all error messages
 const firstNameErrorMessage = "First name must be at least 2 characters long";
 const lastNameErrorMessage = "Last name must be at least 2 characters long";
 const emailErrorMessage = "Email is Invalid";

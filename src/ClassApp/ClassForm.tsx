@@ -1,63 +1,55 @@
 import { Component } from "react";
 import { ErrorMessage } from "../ErrorMessage";
+import { ClassInput } from "./ClassInput";
+import { inputProperties } from "../utils/inputProperties";
+import { phoneInputsProperties } from "../utils/inputProperties";
+import { ClassPhoneInputs } from "./ClassPhoneInputs";
 
-const firstNameErrorMessage = "First name must be at least 2 characters long";
-const lastNameErrorMessage = "Last name must be at least 2 characters long";
-const emailErrorMessage = "Email is Invalid";
-const cityErrorMessage = "State is Invalid";
+// make ts file to house all error messages
+// const firstNameErrorMessage = "First name must be at least 2 characters long";
+// const lastNameErrorMessage = "Last name must be at least 2 characters long";
+// const emailErrorMessage = "Email is Invalid";
+// const cityErrorMessage = "State is Invalid";
 const phoneNumberErrorMessage = "Invalid Phone Number";
 
 export class ClassForm extends Component {
+  state = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    city: "",
+    phoneNumber: "",
+  };
   render() {
+    // const {firstName, lastName, email, city, phoneNumber} = this.state
     return (
       <form>
         <u>
           <h3>User Information Form</h3>
         </u>
 
-        {/* first name input */}
-        <div className="input-wrap">
-          <label>{"First Name"}:</label>
-          <input placeholder="Bilbo" />
-        </div>
-        <ErrorMessage message={firstNameErrorMessage} show={true} />
-
-        {/* last name input */}
-        <div className="input-wrap">
-          <label>{"Last Name"}:</label>
-          <input placeholder="Baggins" />
-        </div>
-        <ErrorMessage message={lastNameErrorMessage} show={true} />
-
-        {/* Email Input */}
-        <div className="input-wrap">
-          <label>{"Email"}:</label>
-          <input placeholder="bilbo-baggins@adventurehobbits.net" />
-        </div>
-        <ErrorMessage message={emailErrorMessage} show={true} />
-
-        {/* City Input */}
-        <div className="input-wrap">
-          <label>{"City"}:</label>
-          <input placeholder="Hobbiton" />
-        </div>
-        <ErrorMessage message={cityErrorMessage} show={true} />
+        {inputProperties.map((input) => (
+          <ClassInput
+            label={input.label}
+            value={""}
+            placeholder={input.placeholder}
+            errorMsg={input.errorMsg}
+            id={""}
+            show={true}
+          />
+        ))}
 
         <div className="input-wrap">
           <label htmlFor="phone">Phone:</label>
           <div id="phone-input-wrap">
-            <input type="text" id="phone-input-1" placeholder="55" />
-            -
-            <input type="text" id="phone-input-2" placeholder="55" />
-            -
-            <input type="text" id="phone-input-3" placeholder="55" />
-            -
-            <input type="text" id="phone-input-4" placeholder="5" />
+            {phoneInputsProperties.map((input) => (
+              <ClassPhoneInputs id={input.id} placeholder={input.placeHolder} />
+            ))}
           </div>
         </div>
 
         <ErrorMessage message={phoneNumberErrorMessage} show={true} />
-
+        {/* fix submit btn, needs the .preventDefualt and function for validations and to display info */}
         <input type="submit" value="Submit" />
       </form>
     );
