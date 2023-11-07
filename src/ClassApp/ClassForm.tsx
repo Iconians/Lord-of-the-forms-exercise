@@ -1,16 +1,11 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { ErrorMessage } from "../ErrorMessage";
-import { ClassInput } from "./ClassInput";
+import { ClassTextInput } from "./ClassTextInput";
 import { inputProperties } from "../utils/inputProperties";
 import { phoneInputsProperties } from "../utils/inputProperties";
-import { ClassPhoneInputs } from "./ClassPhoneInputs";
 
-// make ts file to house all error messages
-// const firstNameErrorMessage = "First name must be at least 2 characters long";
-// const lastNameErrorMessage = "Last name must be at least 2 characters long";
-// const emailErrorMessage = "Email is Invalid";
-// const cityErrorMessage = "State is Invalid";
 const phoneNumberErrorMessage = "Invalid Phone Number";
+export type phoneinputState = [string, string, string, string];
 
 export class ClassForm extends Component {
   state = {
@@ -18,10 +13,28 @@ export class ClassForm extends Component {
     lastName: "",
     email: "",
     city: "",
-    phoneNumber: "",
+    phoneNumber: ["", "", "", ""] as phoneinputState,
   };
+
+  // ref0 = React.createRef<HTMLInputElement>();
+  // ref1 = React.createRef<HTMLInputElement>();
+  // ref2 = React.createRef<HTMLInputElement>();
+  // ref3 = React.createRef<HTMLInputElement>();
+
   render() {
     // const {firstName, lastName, email, city, phoneNumber} = this.state
+
+    const updatePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { value, id } = e.target;
+      const maxLength = [2, 2, 2, 1];
+      const current = maxLength[0];
+      console.log(value);
+      if (value.length <= current) {
+        this.setState({ phoneNumber: value });
+      } else {
+        maxLength[+1];
+      }
+    };
     return (
       <form>
         <u>
@@ -29,12 +42,12 @@ export class ClassForm extends Component {
         </u>
 
         {inputProperties.map((input) => (
-          <ClassInput
+          <ClassTextInput
             label={input.label}
             value={""}
             placeholder={input.placeholder}
             errorMsg={input.errorMsg}
-            id={""}
+            // onchange={}
             show={true}
           />
         ))}
@@ -42,9 +55,29 @@ export class ClassForm extends Component {
         <div className="input-wrap">
           <label htmlFor="phone">Phone:</label>
           <div id="phone-input-wrap">
-            {phoneInputsProperties.map((input) => (
-              <ClassPhoneInputs id={input.id} placeholder={input.placeHolder} />
-            ))}
+            {phoneInputsProperties.map((input) =>
+              input.id !== "phone-input-4" ? (
+                <>
+                  <input
+                    type="text"
+                    key={input.id}
+                    id={input.id}
+                    placeholder={input.placeHolder}
+                    value={this.state.phoneNumber}
+                    onChange={updatePhoneNumber}
+                    // ref={input.ref}
+                  />
+                  -
+                </>
+              ) : (
+                <input
+                  type="text"
+                  id={input.id}
+                  placeholder={input.placeHolder}
+                  // ref={input.ref}
+                />
+              )
+            )}
           </div>
         </div>
 

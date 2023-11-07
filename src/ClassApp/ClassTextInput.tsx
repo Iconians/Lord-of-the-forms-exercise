@@ -6,18 +6,18 @@ const props = {
   value: "",
   placeholder: "",
   errorMsg: "",
-  id: "",
+  onchange: void 0,
   show: true,
 };
 
-export class ClassInput extends Component<typeof props> {
+export class ClassTextInput extends Component<typeof props> {
   render() {
-    const { label, placeholder, errorMsg, value, show } = this.props;
+    const { label, placeholder, errorMsg, value, show, onchange } = this.props;
     return (
       <>
         <div className={"input-wrap"}>
           <label>{label}:</label>
-          <input placeholder={placeholder} value={value} />
+          <input placeholder={placeholder} value={value} onChange={onchange} />
         </div>
         <ErrorMessage message={errorMsg} show={show} />
       </>

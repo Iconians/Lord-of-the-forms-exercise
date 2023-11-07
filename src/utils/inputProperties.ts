@@ -25,17 +25,21 @@ export const phoneInputsProperties = [
   {
     id: "phone-input-1",
     placeHolder: "55",
+    // ref: ref0,
   },
   {
     id: "phone-input-2",
     placeHolder: "55",
+    // ref: ref1,
   },
   {
     id: "phone-input-3",
     placeHolder: "55",
+    // ref: ref2,
   },
   {
     id: "phone-input-4",
     placeHolder: "5",
+    // ref: ref3,
   },
 ];
