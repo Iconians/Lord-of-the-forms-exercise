@@ -3,43 +3,24 @@ export const inputProperties = [
     label: "First Name",
     placeholder: "Bilbo",
     errorMsg: "First name must be at least 2 characters long",
+    id: "firstName",
   },
   {
     label: "Last Name",
     placeholder: "Baggins",
     errorMsg: "Last name must be at least 2 characters long",
+    id: "lastName",
   },
   {
     label: "Email",
     placeholder: "bilbo-baggins@adventurehobbits.net",
     errorMsg: "Email is Invalid",
+    id: "email",
   },
   {
     label: "City",
     placeholder: "Hobbiton",
     errorMsg: "State is Invalid",
-  },
-];
-
-export const phoneInputsProperties = [
-  {
-    id: "phone-input-1",
-    placeHolder: "55",
-    // ref: ref0,
-  },
-  {
-    id: "phone-input-2",
-    placeHolder: "55",
-    // ref: ref1,
-  },
-  {
-    id: "phone-input-3",
-    placeHolder: "55",
-    // ref: ref2,
-  },
-  {
-    id: "phone-input-4",
-    placeHolder: "5",
-    // ref: ref3,
+    id: "city",
   },
 ];
