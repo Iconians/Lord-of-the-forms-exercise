@@ -210,6 +210,7 @@ export class ClassForm extends Component<props> {
 
         {inputProperties.map((input, index) => (
           <ClassTextInput
+            key={input.id}
             label={input.label}
             value={inputvalue(index)}
             placeholder={input.placeholder}
