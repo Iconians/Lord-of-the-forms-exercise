@@ -1,6 +1,7 @@
 import "./App.css";
 import { ClassApp } from "./ClassApp/ClassApp";
 import { FunctionalApp } from "./FunctionalApp/FunctionalApp";
+import { AppProvider } from "./app.Context";
 import { allCities } from "./utils/all-cities";
 
 function App() {
@@ -14,7 +15,9 @@ function App() {
         <h4>Always remember.. One does not simply fill out a react form</h4>
         <div className="forms-container">
           <div className="left">
-            <FunctionalApp />
+            <AppProvider>
+              <FunctionalApp />
+            </AppProvider>
           </div>
           <div className="right">
             <ClassApp />

@@ -1,20 +1,13 @@
 import { ProfileInformation } from "../ProfileInformation";
 import { FunctionalForm } from "./FunctionalForm";
-import { UserInformation } from "../types";
-
-const defaultUser: UserInformation = {
-  email: "default@default.com",
-  firstName: "Default",
-  lastName: "Default",
-  phone: "1234567",
-  city: "Hobbiton",
-};
+import { useAppContext } from "../useAppContext";
 
 export const FunctionalApp = () => {
+  const { userInformation } = useAppContext();
   return (
     <>
       <h2>Functional</h2>
-      <ProfileInformation userData={defaultUser} />
+      <ProfileInformation userData={userInformation} />
       <FunctionalForm />
     </>
   );
