@@ -26,13 +26,21 @@ interface AppContextType {
   setCityError: React.Dispatch<React.SetStateAction<boolean>>;
   phoneError: boolean;
   setPhoneError: React.Dispatch<React.SetStateAction<boolean>>;
-  userInformation: UserInformation;
+  userInfo: UserInformation;
   setUserData: (array: string[]) => void;
 }
 
 export const AppContext = createContext<AppContextType>({} as AppContextType);
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
+  const userInformation: UserInformation = {
+    email: "",
+    firstName: "",
+    lastName: "",
+    phone: "",
+    city: "",
+  };
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -43,28 +51,21 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [emailError, setEmailError] = useState(false);
   const [cityError, setCityError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
-  const [done, setDone] = useState(false);
-
-  let userInformation: UserInformation = {
-    email: "default@default.com",
-    firstName: "Default",
-    lastName: "Default",
-    phone: "1234567",
-    city: "Hobbiton",
-  };
+  const [userInfo, setUserInfo] = useState(userInformation);
 
   const setUserData = (array: string[]) => {
-    setDone(false);
-    userInformation = {
+    setUserInfo({
       email: array[2],
       firstName: array[0],
       lastName: array[1],
-      phone: array[3],
-      city: array[4],
-    };
-    setDone(true);
-    console.log(userInformation);
-    console.log(done);
+      phone: array[4],
+      city: array[3],
+    });
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setCity("");
+    setPhoneNumber(["", "", "", ""]);
   };
 
   return (
@@ -90,7 +91,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setCityError,
         phoneError,
         setPhoneError,
-        userInformation,
+        userInfo,
         setUserData,
       }}
     >

@@ -1,7 +1,7 @@
 import "./App.css";
 import { ClassApp } from "./ClassApp/ClassApp";
 import { FunctionalApp } from "./FunctionalApp/FunctionalApp";
-import { AppProvider } from "./app.Context";
+import { AppProvider } from "./AppContext";
 import { allCities } from "./utils/all-cities";
 
 function App() {

@@ -15,10 +15,24 @@ export class ClassTextInput extends Component<props> {
   render() {
     const { label, placeholder, errorMsg, value, show, onchange, id } =
       this.props;
-    return (
+    return label === "City" ? (
       <>
         <div className={"input-wrap"}>
           <label>{label}:</label>
+          <input
+            placeholder={placeholder}
+            value={value}
+            list="cities"
+            onChange={onchange}
+            id={id}
+          />
+        </div>
+        <ErrorMessage message={errorMsg} show={show} />
+      </>
+    ) : (
+      <>
+        <div className={"input-wrap"}>
+          <label htmlFor={id}>{label}:</label>
           <input
             placeholder={placeholder}
             value={value}

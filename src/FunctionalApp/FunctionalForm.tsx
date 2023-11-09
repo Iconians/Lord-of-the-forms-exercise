@@ -9,6 +9,7 @@ import {
 } from "../utils/validations";
 import { allCities } from "../utils/all-cities";
 import { useAppContext } from "../useAppContext";
+import { capitalize } from "../utils/transformations";
 
 const phoneNumberErrorMessage = "Invalid Phone Number";
 
@@ -129,6 +130,7 @@ export const FunctionalForm = () => {
 
       lastName: (lastName: string) => {
         const textOnly = onlyTextValidation(lastName);
+        console.log(capitalize(lastName));
         if (lastNameError) setLastNameError(false);
         if (lastName.length >= 2 && !textOnly) {
           setLastNameError(true);
@@ -182,20 +184,16 @@ export const FunctionalForm = () => {
       cityError ||
       phoneError
     ) {
-      console.log("error");
       return false;
     }
-    console.log("no error");
     return true;
   };
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const array = [firstName, lastName, email, city, phoneNumber.join("")];
-    console.log(checkForErrors(array));
     if (checkForErrors(array) === true) {
       setUserData(array);
-      console.log(array);
     }
   };
 

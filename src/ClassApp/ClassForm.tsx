@@ -8,6 +8,7 @@ import {
   onlyNumberValidation,
   onlyTextValidation,
 } from "../utils/validations";
+import { capitalize } from "../utils/transformations";
 
 const phoneNumberErrorMessage = "Invalid Phone Number";
 export type phoneinputState = [string, string, string, string];
@@ -153,7 +154,7 @@ export class ClassForm extends Component<props> {
         },
 
         city: (city: string) => {
-          const capitalizeCity = city.charAt(0).toUpperCase() + city.slice(1);
+          const capitalizeCity = capitalize(city);
           const checkCity = allCities.includes(capitalizeCity);
           if (cityError) this.setState({ cityError: false });
           if (!checkCity) {
@@ -187,18 +188,28 @@ export class ClassForm extends Component<props> {
         cityError ||
         phoneError
       ) {
-        return true;
+        return false;
       }
-      return false;
+      return true;
+    };
+
+    const resetForm = () => {
+      this.setState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        city: "",
+        phoneNumber: ["", "", "", ""],
+      });
     };
 
     const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const { firstName, lastName, email, city, phoneNumber } = this.state;
       const array = [firstName, lastName, email, city, phoneNumber.join("")];
-      console.log(checkForErrors(array));
       if (checkForErrors(array) === true) {
         this.props.updateUserInfo(array);
+        resetForm();
       }
     };
 
@@ -263,7 +274,6 @@ export class ClassForm extends Component<props> {
         </div>
 
         <ErrorMessage message={phoneNumberErrorMessage} show={phoneError} />
-        {/* fix submit btn, needs the .preventDefualt and function for validations and to display info */}
         <input type="submit" value="Submit" />
       </form>
     );

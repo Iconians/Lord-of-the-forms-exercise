@@ -48,7 +48,7 @@ export class ClassApp extends Component<Record<string, never>> {
             // toggle the following lines to change
             // null
             // defaultUser
-            userDataInformation
+            userDataInformation.firstName ? userDataInformation : null
           }
         />
         <ClassForm updateUserInfo={this.updateUserInfo} />
